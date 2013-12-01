@@ -10,14 +10,17 @@
  */
 class PostRequest
 {
+    /* Declare constants for error messages and its code number */
     const E_DATA_NOT_ARRAY_ID = 1;
     const E_DATA_NOT_ARRAY_MSG = "'data' argument should be an array.";
-
     const E_DATA_ZERO_LENGTH_ARRAY_ID = 2;
     const E_DATA_ZERO_LENGTH_ARRAY_MSG = "'data' argument should at least contains one item.";
-
-    const E_DATA_NON_ASSOC_ARRAY_ID = 2;
+    const E_DATA_NON_ASSOC_ARRAY_ID = 3;
     const E_DATA_NON_ASSOC_ARRAY_MSG = "'data' argument should be an associative array.";
+
+    /* HTTP header constants declaration */
+    const HTTP_METHOD = 'POST';
+    const HTTP_HEADER = "Content-type: application/x-www-form-urlencoded\r\n";
 
     /**
      * Array which contain data to be sent in POST request
