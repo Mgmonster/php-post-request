@@ -18,3 +18,14 @@ try {
 } catch(Exception $e) {
 	print($e->getMessage());
 }
+
+/* 
+ * Call setData method with a zero length array as its argument.
+ * It should be thrown an exception since setData() method only accept
+ * a non zero length array.
+ */
+try {
+	$postRequest->setData(array());
+} catch(Exception $e) {
+	print($e->getMessage());
+}
