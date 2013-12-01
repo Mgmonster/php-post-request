@@ -13,6 +13,9 @@ class PostRequest
     const E_DATA_NOT_ARRAY_ID = 1;
     const E_DATA_NOT_ARRAY_MSG = "'data' argument should be an array.";
 
+    const E_DATA_ZERO_LENGTH_ARRAY_ID = 2;
+    const E_DATA_ZERO_LENGTH_ARRAY_MSG = "'data' argument should at least contains one item.";
+
     /**
      * Array which contain data to be sent in POST request
      *
@@ -56,6 +59,12 @@ class PostRequest
         if (!is_array($data)) {
             throw new Exception(self::E_DATA_NOT_ARRAY_MSG, 
                 self::E_DATA_NOT_ARRAY_ID);
+        }
+
+        /* If data being passed is has no items, it will thrown an exception */
+        if (count($data) <= 0) {
+            throw new Exception(self::E_DATA_ZERO_LENGTH_ARRAY_MSG, 
+                self::E_DATA_ZERO_LENGTH_ARRAY_ID);
         }
 
         $this->data = $data;
