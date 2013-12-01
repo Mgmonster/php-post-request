@@ -49,6 +49,10 @@ class PostRequest
      */
     public function setData($data)
     {
+        /* If data being passed is not an array, it will thrown an exception */
+        if (!is_array($data)) 
+            throw new Exception("'data' argument should be an array.", 1);
+        
         $this->data = $data;
     }
 }
