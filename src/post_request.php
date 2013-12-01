@@ -58,6 +58,23 @@ class PostRequest
      */
     public function setData($data)
     {
+        $this->validateData($data);
+        $this->data = $data;
+    }
+
+    /**
+     * Validate whether user has set a valid data
+     *
+     * @param array $data An array which contain data to be sent along in POST
+     *                    request. Note that the array should be associative 
+     *                    array.
+     *
+     * @return void
+     *
+     * @access public 
+     */
+    private function validateData($data)
+    {
         /* If data being passed is not an array, it will thrown an exception */
         if (!is_array($data)) {
             throw new Exception(self::E_DATA_NOT_ARRAY_MSG, 
@@ -78,7 +95,5 @@ class PostRequest
             throw new Exception(self::E_DATA_NON_ASSOC_ARRAY_MSG, 
                 self::E_DATA_NON_ASSOC_ARRAY_ID);
         }
-
-        $this->data = $data;
     }
 }
