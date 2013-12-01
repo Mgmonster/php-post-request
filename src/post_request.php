@@ -16,6 +16,9 @@ class PostRequest
     const E_DATA_ZERO_LENGTH_ARRAY_ID = 2;
     const E_DATA_ZERO_LENGTH_ARRAY_MSG = "'data' argument should at least contains one item.";
 
+    const E_DATA_NON_ASSOC_ARRAY_ID = 2;
+    const E_DATA_NON_ASSOC_ARRAY_MSG = "'data' argument should be an associative array.";
+
     /**
      * Array which contain data to be sent in POST request
      *
@@ -65,6 +68,15 @@ class PostRequest
         if (count($data) <= 0) {
             throw new Exception(self::E_DATA_ZERO_LENGTH_ARRAY_MSG, 
                 self::E_DATA_ZERO_LENGTH_ARRAY_ID);
+        }
+
+        /* 
+         * If data being passed is a non-associative array, it will thrown an 
+         * exception 
+         */
+        if (count(array_filter(array_keys($data), 'is_string')) != count($data)) {
+            throw new Exception(self::E_DATA_NON_ASSOC_ARRAY_MSG, 
+                self::E_DATA_NON_ASSOC_ARRAY_ID);
         }
 
         $this->data = $data;
