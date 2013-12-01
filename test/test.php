@@ -59,6 +59,17 @@ try {
     testMessage(4, INVALID_TEST, $e);
 }
 
+/*
+ * INVALID TEST-5 
+ * Call setData method with a valid associative array as its argument
+ */
+try {
+    $postRequest->setData(array('username' => 'foobar'));
+    testMessage(5, VALID_TEST);
+} catch(Exception $e) {
+    testMessage(5, VALID_TEST, $e);
+}
+
 /** 
  * A handy function to display test result message
  *
