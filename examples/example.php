@@ -6,4 +6,8 @@ require_once('../src/post_request.php');
 $postRequest = new PostRequest();
 
 /* Call setData method with an invalid argument */
-$postRequest->setData('invalid');
+try {
+	$postRequest->setData('invalid');
+} catch(Exception $e) {
+	/* Simply do nothing */
+}
