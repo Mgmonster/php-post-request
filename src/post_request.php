@@ -36,7 +36,7 @@ class PostRequest
          * If the argument being passed is not null, assume that this is an 
          * array that contains the data to be sent in POST request
          */
-        if (is_null($data)) $this->setData($data);
+        if (!is_null($data)) $this->setData($data);
     }
 
     /**
