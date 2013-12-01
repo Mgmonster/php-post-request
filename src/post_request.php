@@ -10,6 +10,9 @@
  */
 class PostRequest
 {
+    const E_DATA_NOT_ARRAY_ID = 1;
+    const E_DATA_NOT_ARRAY_MSG = "'data' argument should be an array.";
+
     /**
      * Array which contain data to be sent in POST request
      *
@@ -50,9 +53,11 @@ class PostRequest
     public function setData($data)
     {
         /* If data being passed is not an array, it will thrown an exception */
-        if (!is_array($data)) 
-            throw new Exception("'data' argument should be an array.", 1);
-        
+        if (!is_array($data)) {
+            throw new Exception(self::E_DATA_NOT_ARRAY_MSG, 
+                self::E_DATA_NOT_ARRAY_ID);
+        }
+
         $this->data = $data;
     }
 }
