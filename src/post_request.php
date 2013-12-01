@@ -19,6 +19,24 @@ class PostRequest
     private $data;
 
     /**
+     * Class constructor
+     * 
+     * @param mixed
+     *
+     * @return object An object of PostRequest class
+     *
+     * @access public
+     */
+    public function __construct($data)
+    {
+        /*
+         * If there is an argument passed, assume that this is an array that 
+         * contains the data to be sent in POST request
+         */
+        if (isset($data)) $this->setData($data);
+    }
+
+    /**
      * Set the data which would be sent along with POST request
      *
      * @param array $data An array which contain data to be sent along in POST
