@@ -12,5 +12,5 @@ $postRequest->setData(array(
 ));
 
 /* Send POST request to endpoint */
-$response = $postRequest->send('http://risanbagja1.com');
+$response = $postRequest->send('http://risanbagja.com');
 var_dump($response);

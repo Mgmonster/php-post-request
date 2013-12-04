@@ -23,6 +23,8 @@ class PostRequest
     const E_URL_NOT_VALID_MSG = "The given 'url' parameter is invalid.";
     const E_URL_WITHOUT_PROTOCOL_ID = 5;
     const E_URL_WITHOUT_PROTOCOL_MSG = "The given 'url' parameter has not protocol defined.";
+    const E_404_NOT_FOUND_ID = 6;
+    const E_404_NOT_FOUND_MSG = "404 Not Found, failed to open the 'url' you have specified.";
 
 
     /* HTTP header constants declaration */
@@ -111,8 +113,11 @@ class PostRequest
         /* Create stream context resource */
         $context = stream_context_create($options);
 
+        /* Set custom error handler, to catch warning */
+        set_error_handler(array($this, 'error404'), E_WARNING);
+
         /* Finaly send request */
-        return @file_get_contents($url, false, $context);
+        return file_get_contents($url, false, $context);
     }
 
 
@@ -148,6 +153,25 @@ class PostRequest
         if (count(array_filter(array_keys($data), 'is_string')) != count($data)) {
             throw new Exception(self::E_DATA_NON_ASSOC_ARRAY_MSG, 
                 self::E_DATA_NON_ASSOC_ARRAY_ID);
+        }
+    }
+
+    /**
+     * Method to handle HTTP 404 response
+     *
+     * PHP would thrown E_WARNING when file_get_contents() could not find
+     * the desired file, we have to handle it.
+     *
+     * @param int       $errno      The level of the error raised
+     * @param string    $errstr     Error message
+     * @param int       $errline    The line number the error was raised
+     * @param array     $errcontext An array that points to the active symbol table
+     */
+    private function error404($errno, $errstr, $errfile, $errline, array $errcontext) {
+        // Look for 404 Not Found error message
+        if (strpos($errstr, '404 Not Found') !== false) {
+            throw new Exception(self::E_404_NOT_FOUND_MSG, 
+                self::E_404_NOT_FOUND_ID);
         }
     }
 }
