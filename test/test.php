@@ -60,7 +60,7 @@ try {
 }
 
 /*
- * INVALID TEST-5 
+ * VALID TEST-5 
  * Call setData method with a valid associative array as its argument
  */
 try {
@@ -68,6 +68,18 @@ try {
     testMessage(5, VALID_TEST);
 } catch(Exception $e) {
     testMessage(5, VALID_TEST, $e);
+}
+
+/*
+ * INVALID TEST-6
+ * Call send() method without any data has been setup
+ */
+try {
+    $postRequest = new PostRequest();
+    $postRequest->send('server.php');
+    testMessage(6, INVALID_TEST);
+} catch(Exception $e) {
+    testMessage(6, INVALID_TEST, $e);
 }
 
 /** 

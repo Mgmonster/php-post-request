@@ -18,9 +18,11 @@ class PostRequest
     const E_DATA_NON_ASSOC_ARRAY_ID = 3;
     const E_DATA_NON_ASSOC_ARRAY_MSG = "'data' argument should be an associative array.";
 
+
     /* HTTP header constants declaration */
     const HTTP_METHOD = 'POST';
     const HTTP_HEADER = "Content-type: application/x-www-form-urlencoded\r\n";
+
 
     /**
      * Array which contain data to be sent in POST request
@@ -29,6 +31,7 @@ class PostRequest
      * @access private
      */
     private $data;
+
 
     /**
      * Class constructor
@@ -48,6 +51,7 @@ class PostRequest
         if (!is_null($data)) $this->setData($data);
     }
 
+
     /**
      * Set the data which would be sent along with POST request
      *
@@ -64,6 +68,22 @@ class PostRequest
         $this->validateData($data);
         $this->data = $data;
     }
+
+
+    /**
+     * Send POST request to specified URL
+     *
+     * @param string $url A valid URL where we are send HTTP POST request to
+     *
+     * @return mixed
+     *
+     * @access public 
+     */
+    public function send($url)
+    {
+        
+    }
+
 
     /**
      * Validate whether user has set a valid data
