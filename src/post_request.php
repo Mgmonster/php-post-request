@@ -12,13 +12,15 @@ class PostRequest
 {
     /* Declare constants for error messages and its code number */
     const E_DATA_NOT_SET_ID = 0;
-    const E_DATA_NOT_SET_MSG = "'data' argument is not set.";
+    const E_DATA_NOT_SET_MSG = "'data' parameter is not set.";
     const E_DATA_NOT_ARRAY_ID = 1;
-    const E_DATA_NOT_ARRAY_MSG = "'data' argument should be an array.";
+    const E_DATA_NOT_ARRAY_MSG = "'data' parameter should be an array.";
     const E_DATA_ZERO_LENGTH_ARRAY_ID = 2;
-    const E_DATA_ZERO_LENGTH_ARRAY_MSG = "'data' argument should at least contains one item.";
+    const E_DATA_ZERO_LENGTH_ARRAY_MSG = "'data' parameter should at least contains one item.";
     const E_DATA_NON_ASSOC_ARRAY_ID = 3;
-    const E_DATA_NON_ASSOC_ARRAY_MSG = "'data' argument should be an associative array.";
+    const E_DATA_NON_ASSOC_ARRAY_MSG = "'data' parameter should be an associative array.";
+    const E_URL_NOT_VALID_ID = 4;
+    const E_URL_NOT_VALID_MSG = "The given 'url' parameter is invalid.";
 
 
     /* HTTP header constants declaration */
@@ -87,6 +89,12 @@ class PostRequest
         if (is_null($this->data)) {
             throw new Exception(self::E_DATA_NOT_SET_MSG,
                 self::E_DATA_NOT_SET_ID);
+        }
+
+        /* If given URL is invalid */
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new Exception(self::E_URL_NOT_VALID_MSG,
+                self::E_URL_NOT_VALID_ID);
         }
     }
 

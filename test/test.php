@@ -94,6 +94,18 @@ try {
     testMessage(7, INVALID_TEST, $e);
 }
 
+/*
+ * INVALID TEST-8
+ * Call send() method with valid URL but without any protocol defined
+ */
+try {
+    $postRequest = new PostRequest(array('username' => 'risan'));
+    $postRequest->send('risan.com');
+    testMessage(8, INVALID_TEST);
+} catch(Exception $e) {
+    testMessage(8, INVALID_TEST, $e);
+}
+
 /** 
  * A handy function to display test result message
  *
