@@ -87,7 +87,7 @@ try {
  * Call send() method with an invalid URL
  */
 try {
-    $postRequest = new PostRequest(array('username' => 'risan'));
+    $postRequest = new PostRequest(array('name' => 'John Doe'));
     $postRequest->send('invalid');
     testMessage(7, INVALID_TEST);
 } catch(Exception $e) {
@@ -99,7 +99,7 @@ try {
  * Call send() method with valid URL but without protocolo defined
  */
 try {
-    $postRequest = new PostRequest(array('username' => 'risan'));
+    $postRequest = new PostRequest(array('name' => 'John Doe'));
     $postRequest->send('risan.com');
     testMessage(8, INVALID_TEST);
 } catch(Exception $e) {
@@ -111,11 +111,24 @@ try {
  * Call send() method to unavailable endpoint
  */
 try {
-    $postRequest = new PostRequest(array('username' => 'risan'));
+    $postRequest = new PostRequest(array('name' => 'John Doe'));
     $postRequest->send('http://nowhsdsdere.com');
     testMessage(9, INVALID_TEST);
 } catch(Exception $e) {
     testMessage(9, INVALID_TEST, $e);
+}
+
+/*
+ * VALID TEST-10
+ * Call send() method to valid endpoint
+ */
+try {
+    $postRequest = new PostRequest(array('name' => 'John Doe', 'message' => 'Hello world!'));
+    $res = $postRequest->send('http://risanbagja.com/php-post-request/test/server.php');
+    testMessage(10, VALID_TEST);
+    print_r($res);
+} catch(Exception $e) {
+    testMessage(10, VALID_TEST, $e);
 }
 
 /** 
