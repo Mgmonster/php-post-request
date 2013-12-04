@@ -106,6 +106,18 @@ try {
     testMessage(8, INVALID_TEST, $e);
 }
 
+/*
+ * INVALID TEST-9
+ * Call send() method to unavailable endpoint
+ */
+try {
+    $postRequest = new PostRequest(array('username' => 'risan'));
+    $postRequest->send('http://nowhere.com');
+    testMessage(9, INVALID_TEST);
+} catch(Exception $e) {
+    testMessage(9, INVALID_TEST, $e);
+}
+
 /** 
  * A handy function to display test result message
  *
