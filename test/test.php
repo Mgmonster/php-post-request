@@ -82,6 +82,18 @@ try {
     testMessage(6, INVALID_TEST, $e);
 }
 
+/*
+ * INVALID TEST-7
+ * Call send() method with an invalid URL
+ */
+try {
+    $postRequest = new PostRequest(array('username' => 'risan'));
+    $postRequest->send('invalid');
+    testMessage(7, INVALID_TEST);
+} catch(Exception $e) {
+    testMessage(7, INVALID_TEST, $e);
+}
+
 /** 
  * A handy function to display test result message
  *
