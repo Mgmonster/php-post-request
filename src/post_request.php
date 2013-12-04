@@ -11,6 +11,8 @@
 class PostRequest
 {
     /* Declare constants for error messages and its code number */
+    const E_DATA_NOT_SET_ID = 0;
+    const E_DATA_NOT_SET_MSG = "'data' argument is not set.";
     const E_DATA_NOT_ARRAY_ID = 1;
     const E_DATA_NOT_ARRAY_MSG = "'data' argument should be an array.";
     const E_DATA_ZERO_LENGTH_ARRAY_ID = 2;
@@ -30,7 +32,7 @@ class PostRequest
      * @var array
      * @access private
      */
-    private $data;
+    private $data = null;
 
 
     /**
@@ -81,7 +83,11 @@ class PostRequest
      */
     public function send($url)
     {
-        
+        /* If data is still null, we assume it is not set */
+        if (is_null($this->data)) {
+            throw new Exception(self::E_DATA_NOT_SET_MSG,
+                self::E_DATA_NOT_SET_ID);
+        }
     }
 
 
