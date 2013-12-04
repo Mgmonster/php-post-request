@@ -98,6 +98,21 @@ class PostRequest
             throw new Exception(self::E_URL_NOT_VALID_MSG,
                 self::E_URL_NOT_VALID_ID);
         }
+
+        /* Prepare HTTP header */
+        $options = array(
+            'http'  => array(
+                'header'    => HTTP_HEADER,
+                'method'    => HTTP_METHOD,
+                'content'   => http_build_query($this->data)
+            )
+        );
+
+        /* Create stream context resource */
+        $context = stream_context_create($options);
+
+        /* Finaly send request */
+        return file_get_contents($url, false, $context);
     }
 
 
