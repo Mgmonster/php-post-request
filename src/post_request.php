@@ -112,7 +112,7 @@ class PostRequest
         $context = stream_context_create($options);
 
         /* Finaly send request */
-        return file_get_contents($url, false, $context);
+        return @file_get_contents($url, false, $context);
     }
 
 
