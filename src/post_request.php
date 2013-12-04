@@ -102,8 +102,8 @@ class PostRequest
         /* Prepare HTTP header */
         $options = array(
             'http'  => array(
-                'header'    => HTTP_HEADER,
-                'method'    => HTTP_METHOD,
+                'header'    => self::HTTP_HEADER,
+                'method'    => self::HTTP_METHOD,
                 'content'   => http_build_query($this->data)
             )
         );
