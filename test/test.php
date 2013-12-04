@@ -96,7 +96,7 @@ try {
 
 /*
  * INVALID TEST-8
- * Call send() method with valid URL but without any protocol defined
+ * Call send() method with valid URL but without protocolo defined
  */
 try {
     $postRequest = new PostRequest(array('username' => 'risan'));

@@ -21,6 +21,8 @@ class PostRequest
     const E_DATA_NON_ASSOC_ARRAY_MSG = "'data' parameter should be an associative array.";
     const E_URL_NOT_VALID_ID = 4;
     const E_URL_NOT_VALID_MSG = "The given 'url' parameter is invalid.";
+    const E_URL_WITHOUT_PROTOCOL_ID = 5;
+    const E_URL_WITHOUT_PROTOCOL_MSG = "The given 'url' parameter has not protocol defined.";
 
 
     /* HTTP header constants declaration */
