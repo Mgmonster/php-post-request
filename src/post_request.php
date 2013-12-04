@@ -118,7 +118,7 @@ class PostRequest
         set_error_handler(array($this, 'error404'), E_WARNING);
 
         /* Finaly send request */
-        file_get_contents($url, false, $context);
+        return file_get_contents($url, false, $context);
     }
 
 
