@@ -112,7 +112,7 @@ try {
  */
 try {
     $postRequest = new PostRequest(array('username' => 'risan'));
-    $postRequest->send('http://nowhere.com');
+    $postRequest->send('http://nowhsdsdere.com');
     testMessage(9, INVALID_TEST);
 } catch(Exception $e) {
     testMessage(9, INVALID_TEST, $e);

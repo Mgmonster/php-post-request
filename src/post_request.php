@@ -112,12 +112,13 @@ class PostRequest
 
         /* Create stream context resource */
         $context = stream_context_create($options);
+        
 
         /* Set custom error handler, to catch warning */
         set_error_handler(array($this, 'error404'), E_WARNING);
 
         /* Finaly send request */
-        return file_get_contents($url, false, $context);
+        file_get_contents($url, false, $context);
     }
 
 
@@ -160,7 +161,9 @@ class PostRequest
      * Method to handle HTTP 404 response
      *
      * PHP would thrown E_WARNING when file_get_contents() could not find
-     * the desired file, we have to handle it.
+     * the desired file, we have to handle it. PHP would return error message:
+     * file_get_contents(): php_network_getaddresses: getaddrinfo failed: 
+     * No such host is known.
      *
      * @param int       $errno      The level of the error raised
      * @param string    $errstr     Error message
@@ -169,7 +172,7 @@ class PostRequest
      */
     private function error404($errno, $errstr, $errfile, $errline, array $errcontext) {
         // Look for 404 Not Found error message
-        if (strpos($errstr, '404 Not Found') !== false) {
+        if (strpos($errstr, 'No such host is known') !== false) {
             throw new Exception(self::E_404_NOT_FOUND_MSG, 
                 self::E_404_NOT_FOUND_ID);
         }
